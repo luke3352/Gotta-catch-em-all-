@@ -10,10 +10,6 @@ app.get('/', function(req, res) { res.sendFile(path.join(__dirname + '/client/in
 app.get('/login', function(req, res) { res.sendFile(path.join(__dirname + '/client/login/login.html')); });
 app.get('/createAccount', function(req, res){ res.sendFile(path.join(__dirname + '/client/create-account/createAccount.html')); });
 app.get('/mainMenu', function(req, res) { res.sendFile(path.join(__dirname + '/client/main-menu/mainMenu.html')); });
-app.get('/createRoom', function(req, res) { res.sendFile(path.join(__dirname + '/client/create-room/createRoom.html')); });
-app.get('/joinRoom', function(req, res) { res.sendFile(path.join(__dirname + '/client/join-room/joinRoom.html')); });
-app.get('/characterSelect', function(req, res) { res.sendFile(path.join(__dirname + '/client/character-select/characterSelect.html')); });
-app.get('/weaponSelect', function(req, res) { res.sendFile(path.join(__dirname + '/client/weapon-select/weaponSelect.html')); });
 app.get('/game', function(req, res) { res.sendFile(path.join(__dirname + '/client/game/game.html')); });
 
 app.use('/client', express.static(__dirname + '/client'));
@@ -40,6 +36,7 @@ var verifypassword = function(username, password, callback){
 	});
 
 	connection.connect();
+	
 	connection.query("SELECT _password from User_Info WHERE username ="+ "'" + username+ "'" +";", function(err, rows, fields) {
 		if (!err){
 			var string = JSON.stringify(rows);
@@ -94,20 +91,30 @@ io.sockets.on('connection', function(socket) {
 		console.log(x +" " +y);
 		var arr = Pokemon.checkIfClicked(x,y);
 		
+		var pokeName = Pokemon.getName(arr[1]);
+		
 		if(arr[0]){
 			var connection = mysql.createConnection({
 				host     : 'mysql.cs.iastate.edu',
 				user     : 'dbu319t33',
 				password : '2*STaspu',
-				database : 'dbu319t33'
+				port     : '3306',
+				database : 'db319t33'
 			});
-			console.log(user +" "+ arr[0] + " " + arr[1]);
-			connection.connect();
+			console.log(user +" "+ arr[0] + " " + arr[1] +" "+ pokeName);
+			var info = [user, arr[1], pokeName];
 			
-			connection.query("INSERT INTO Pokemon (NAME, POKEMON) VALUES ("+ "'"+ user + "'" + ",'"+ arr[1] + "');", function(err, rows, fields) {
+			connection.connect();
+				//connection.query("INSERT INTO Rooms SET Room_Id = ?, Room_Object = ?", roominfo, function(err, result) {
+
+			console.log("INSERT INTO Pokemon SET NAME = ?, POKEMON = ?, POKEMON_NAME = ?",info);
+			//connection.query("INSERT INTO Pokemon (NAME, POKEMON, POKEMON_NAME) VALUES ("+ "'"+ user + "'" + ",'"+ arr[1] + "','"+ pokeName +"'" + ");", function(err, rows, fields) {
+				connection.query("INSERT INTO Pokemon SET NAME = ?, POKEMON = ?, POKEMON_NAME = ?",info, function(err) {
 				if (err){
 					console.log("ERROR");
+					console.log(err);
 				}
+				else console.log("You caught a "+ pokeName);
 				});
 			connection.end();
 		}
