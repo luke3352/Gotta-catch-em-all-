@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+<style>
+#picture {
+	position: absolute;
+}
+</style>
+</head>
+<body>
+	<canvas id="ctx" width="1000" height="700" style="border: 1px solid #000000;"></canvas>
+	<img id = "1" src="/client/pokemon/1.png">
+	<img id = "2" src="/client/pokemon/2.png">
+	<img id = "3" src="/client/pokemon/3.png">
+	<img id = "4" src="/client/pokemon/4.png">
+	<img id = "5" src="/client/pokemon/5.png">
+	<img id = "6" src="/client/pokemon/6.png">
+	<img id = "7" src="/client/pokemon/7.png">
+	<img id = "8" src="/client/pokemon/8.png">
+	<img id = "9" src="/client/pokemon/9.png">
+	<img id = "10" src="/client/pokemon/10.png">
+	<img id = "11" src="/client/pokemon/11.png">
+	<img id = "12" src="/client/pokemon/12.png">
+	<img id = "13" src="/client/pokemon/13.png">
+	<img id = "14" src="/client/pokemon/14.png">
+	<img id = "15" src="/client/pokemon/15.png">
+	<img id = "16" src="/client/pokemon/16.png">
+	<img id = "17" src="/client/pokemon/17.png">
+	<img id = "18" src="/client/pokemon/18.png">
+	<img id = "19" src="/client/pokemon/19.png">
+	<img id = "20" src="/client/pokemon/20.png">
+	<img id = "21" src="/client/pokemon/21.png">
+	<img id = "22" src="/client/pokemon/22.png">
+	<img id = "23" src="/client/pokemon/23.png">
+	<img id = "24" src="/client/pokemon/24.png">
+	<img id = "25" src="/client/pokemon/25.png">
+	<img id = "26" src="/client/pokemon/26.png">
+	<img id = "27" src="/client/pokemon/27.png">
+	<img id = "28" src="/client/pokemon/28.png">
+	<img id = "29" src="/client/pokemon/29.png">
+	<img id = "30" src="/client/pokemon/30.png">
+	<img id = "31" src="/client/pokemon/31.png">
+	<img id = "32" src="/client/pokemon/32.png">
+	<img id = "33" src="/client/pokemon/33.png">
+	<img id = "34" src="/client/pokemon/34.png">
+	<img id = "35" src="/client/pokemon/35.png">
+	<img id = "36" src="/client/pokemon/36.png">
+	<img id = "37" src="/client/pokemon/37.png">
+	<img id = "38" src="/client/pokemon/38.png">
+	<img id = "39" src="/client/pokemon/39.png">
+	<img id = "40" src="/client/pokemon/40.png">
+	<img id = "41" src="/client/pokemon/41.png">
+	<img id = "42" src="/client/pokemon/42.png">
+	<img id = "43" src="/client/pokemon/43.png">
+	<img id = "44" src="/client/pokemon/44.png">
+	<img id = "45" src="/client/pokemon/45.png">
+	<img id = "46" src="/client/pokemon/46.png">
+	<img id = "47" src="/client/pokemon/47.png">
+	<img id = "48" src="/client/pokemon/48.png">
+	<img id = "49" src="/client/pokemon/49.png">
+	<img id = "50" src="/client/pokemon/50.png">
+	<img id = "51" src="/client/pokemon/51.png">
+	<img id = "52" src="/client/pokemon/52.png">
+	<img id = "53" src="/client/pokemon/53.png">
+	<img id = "54" src="/client/pokemon/54.png">
+	<img id = "55" src="/client/pokemon/55.png">
+	<img id = "56" src="/client/pokemon/56.png">
+	<img id = "57" src="/client/pokemon/57.png">
+	<img id = "58" src="/client/pokemon/58.png">
+	<img id = "59" src="/client/pokemon/59.png">
+	<img id = "60" src="/client/pokemon/60.png">
+	<img id = "61" src="/client/pokemon/61.png">
+	<img id = "62" src="/client/pokemon/62.png">
+	<img id = "63" src="/client/pokemon/63.png">
+	<img id = "64" src="/client/pokemon/64.png">
+	<img id = "65" src="/client/pokemon/65.png">
+	<img id = "66" src="/client/pokemon/66.png">
+	<img id = "67" src="/client/pokemon/67.png">
+	<img id = "68" src="/client/pokemon/68.png">
+	<img id = "69" src="/client/pokemon/69.png">
+	<img id = "70" src="/client/pokemon/70.png">
+	<img id = "71" src="/client/pokemon/71.png">
+	<img id = "72" src="/client/pokemon/72.png">
+	<img id = "73" src="/client/pokemon/73.png">
+	<img id = "74" src="/client/pokemon/74.png">
+	<img id = "75" src="/client/pokemon/75.png">
+	<img id = "76" src="/client/pokemon/76.png">
+	<img id = "77" src="/client/pokemon/77.png">
+	<img id = "78" src="/client/pokemon/78.png">
+	<img id = "79" src="/client/pokemon/79.png">
+	<img id = "80" src="/client/pokemon/80.png">
+	<img id = "81" src="/client/pokemon/81.png">
+	<img id = "82" src="/client/pokemon/82.png">
+	<img id = "83" src="/client/pokemon/83.png">
+	<img id = "84" src="/client/pokemon/84.png">
+	<img id = "85" src="/client/pokemon/85.png">
+	<img id = "86" src="/client/pokemon/86.png">
+	<img id = "87" src="/client/pokemon/87.png">
+	<img id = "88" src="/client/pokemon/88.png">
+	<img id = "89" src="/client/pokemon/89.png">
+	<img id = "90" src="/client/pokemon/90.png">
+	<img id = "91" src="/client/pokemon/91.png">
+	<img id = "92" src="/client/pokemon/92.png">
+	<img id = "93" src="/client/pokemon/93.png">
+	<img id = "94" src="/client/pokemon/94.png">
+	<img id = "95" src="/client/pokemon/95.png">
+	<img id = "96" src="/client/pokemon/96.png">
+	<img id = "97" src="/client/pokemon/97.png">
+	<img id = "98" src="/client/pokemon/98.png">
+	<img id = "99" src="/client/pokemon/99.png">
+	<img id = "100" src="/client/pokemon/100.png">
+	<img id = "101" src="/client/pokemon/101.png">
+	<img id = "102" src="/client/pokemon/102.png">
+	<img id = "103" src="/client/pokemon/103.png">
+	<img id = "104" src="/client/pokemon/104.png">
+	<img id = "105" src="/client/pokemon/105.png">
+	<img id = "106" src="/client/pokemon/106.png">
+	<img id = "107" src="/client/pokemon/107.png">
+	<img id = "108" src="/client/pokemon/108.png">
+	<img id = "109" src="/client/pokemon/109.png">
+	<img id = "110" src="/client/pokemon/110.png">
+	<img id = "111" src="/client/pokemon/111.png">
+	<img id = "112" src="/client/pokemon/112.png">
+	<img id = "113" src="/client/pokemon/113.png">
+	<img id = "114" src="/client/pokemon/114.png">
+	<img id = "115" src="/client/pokemon/115.png">
+	<img id = "116" src="/client/pokemon/116.png">
+	<img id = "117" src="/client/pokemon/117.png">
+	<img id = "118" src="/client/pokemon/118.png">
+	<img id = "119" src="/client/pokemon/119.png">
+	<img id = "120" src="/client/pokemon/120.png">
+	<img id = "121" src="/client/pokemon/121.png">
+	<img id = "122" src="/client/pokemon/122.png">
+	<img id = "123" src="/client/pokemon/123.png">
+	<img id = "124" src="/client/pokemon/124.png">
+	<img id = "125" src="/client/pokemon/125.png">
+	<img id = "126" src="/client/pokemon/126.png">
+	<img id = "127" src="/client/pokemon/127.png">
+	<img id = "128" src="/client/pokemon/128.png">
+	<img id = "129" src="/client/pokemon/129.png">
+	<img id = "130" src="/client/pokemon/130.png">
+	<img id = "131" src="/client/pokemon/131.png">
+	<img id = "132" src="/client/pokemon/132.png">
+	<img id = "133" src="/client/pokemon/133.png">
+	<img id = "134" src="/client/pokemon/134.png">
+	<img id = "135" src="/client/pokemon/135.png">
+	<img id = "136" src="/client/pokemon/136.png">
+	<img id = "137" src="/client/pokemon/137.png">
+	<img id = "138" src="/client/pokemon/138.png">
+	<img id = "139" src="/client/pokemon/139.png">
+	<img id = "140" src="/client/pokemon/140.png">
+	<img id = "141" src="/client/pokemon/141.png">
+	<img id = "142" src="/client/pokemon/142.png">
+	<img id = "143" src="/client/pokemon/143.png">
+	<img id = "144" src="/client/pokemon/144.png">
+	<img id = "145" src="/client/pokemon/145.png">
+	<img id = "146" src="/client/pokemon/146.png">
+	<img id = "147" src="/client/pokemon/147.png">
+	<img id = "148" src="/client/pokemon/148.png">
+	<img id = "149" src="/client/pokemon/149.png">
+	<img id = "150" src="/client/pokemon/150.png">
+	<img id = "151" src="/client/pokemon/151.png">
+
+	<div id="optionsSelectInGame">
+		<div class="rectangle">
+			<p align="Center">OPTIONS</p>
+			<button style="align: 'left'" id="buttonBackInGame">Back</button>
+		</div>
+	</div>
+
+<script>
+var pauseGame = false;
+
+sessionStorage.setItem('user', 'Luke');
+var userName= sessionStorage.getItem("user");
+
+$(document).ready(function() {
+	var socket = io();
+
+	var ctx = document.getElementById("ctx").getContext("2d");
+
+	socket.on('newPositions', function(data) {
+		ctx.clearRect(0, 0, 1000, 700);
+		
+		for(var i = 0; i < data.pokemon.length; i++){
+			var image = document.getElementById(data.pokemon[i].num);
+			ctx.drawImage(image, data.pokemon[i].x, data.pokemon[i].y,  data.pokemon[i].width, data.pokemon[i].height);
+		}
+	});
+	
+	document.onmousedown = function(event){
+        canvas_x = event.pageX;
+		canvas_y = event.pageY;
+		socket.emit('cord',{x:canvas_x,y:canvas_y,user:userName});
+    }
+
+});
+</script>
+</body>
+</html>

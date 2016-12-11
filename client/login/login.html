@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+<style>
+#buttonContinue {
+	padding: 10px 17px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: white;
+  border-radius: 7px;
+  position: relative;
+}
+#picture {
+	position: absolute;
+}
+.display, .rectangle {
+	position: absolute;
+	z-index: 9999;
+	width: 1000px;
+	height: 700px;
+	border-radius: 20px;
+	background-color: #f4d942;
+	border: 2px solid #ccc;
+}
+.rectangle {
+	top: 0px;
+	left: 0px;
+}		
+</style>
+</head>
+<body>
+<div id="login"> 
+	<div class="rectangle">
+		<form id="formlogin" name="formlogin" action="/mainMenu" method="GET">
+			<fieldset>
+				<legend>login</legend> 
+				username:<br> <input type="text" id="username" required><br><br> 
+				password:<br> <input type="text" id="password"><br><br> 
+			</fieldset>
+		</form>
+		<input type="submit" style="align: 'left'" id="buttonContinue" value="Continue"/>
+	</div>
+</div>
+	
+<script>
+$(document).ready(function() {
+	var socket = io();
+
+	$("#buttonContinue").click(function() {
+		getloginFormData();
+	});
+	
+	function getloginFormData() {
+		//gathers data from the login form
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		//puts data into string for sending
+		var sendLoginData = {username: username, password: password };	
+		socket.emit('sendLoginData', sendLoginData);
+	}
+	
+	socket.on('sendpasswordverification', function(data){
+		var correct = data.correct;
+		var username; 
+		if (correct === 0){
+			alert("Username does not exist, Create new account");
+		}
+		else if (correct === 1){
+			//this needs to be passed and set to show that the username
+			//was succesfully logged in, and can now have wins and 
+			//ranking added to its database
+			username = data.username; 
+			window.location.href = "/";
+			
+		}
+		else{
+			alert("Incorrect Password or Username");
+		}
+	});
+	
+	
+	
+});
+</script>
+</body>
+
+</html>
